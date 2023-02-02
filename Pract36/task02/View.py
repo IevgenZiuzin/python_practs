@@ -1,32 +1,30 @@
-import sys
+def display_album(album):
+    print(f'{album.year} - {album.title}')
 
 
-def get_input(desc=None):
-    string = input(f'{desc}: ')
-    return string if string != '' else False
+def display_artist(artist):
+    print(f'{artist.title}: ')
+    for num, album in enumerate(artist.albums, 1):
+        print(num, end=". ")
+        display_album(album)
 
 
-def display_dict(d):
-    for key, value in d.items():
-        print(f'{key} - {value}')
-
-
-def display_list(l):
-    for i in l:
-        print(f'{i}')
+def display_artists(artists):
+    print(f'Groups: ')
+    for num, artist in enumerate(artists, 1):
+        print(f'{num}. {artist.title}')
 
 
 def display_menu(titles):
-    quit_num = 0
     for number, title in enumerate(titles, 1):
-        print(f"{number}.{title}", end="  ")
-        quit_num = number + 1
-    print(f"{quit_num}.Quit")
+        print(f'{number}. {title}', end=" ")
 
-    query = input("\n: ")
 
-    if not query.isdigit():
-        return
-    if int(query) == quit_num:
-        sys.exit()
-    return query
+def get_int_query(desc=None):
+    query = input(f'{desc}: ')
+    return query if query.isdigit() else False
+
+
+def get_str_query(desc=None):
+    query = input(f'{desc}: ')
+    return query if query != '' else False

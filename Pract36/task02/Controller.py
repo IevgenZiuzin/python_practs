@@ -16,7 +16,6 @@ desc = """
 def bind(fn, *args, **kwargs):
     def inner(*a, **kw):
         return fn(*args, *a, **kwargs, **kw)
-
     return inner
 
 
@@ -30,8 +29,10 @@ def run(query, commands):
                 return
 
 
+def main():
+    pass
+
+
 if __name__ == '__main__':
     print(f'{desc}\n----------\n')
-
-
-
+    main()

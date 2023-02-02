@@ -1,7 +1,34 @@
 [
+ {
+   "title": "Metallica",
+   "albums": [
+    {
+      "title": "Kill' Em All",
+      "year":  "1983"
+    },
+    {
+      "title": "Ride The Lightning",
+      "year":  "1984"
+    },
+    {
+      "title": "Master of Puppets",
+      "year":  "1986"
+    }
+  ]},
   {
-    "France": "Paris"
-  },
-  {
-    "UK": "London"
-  }]
+    "title": "The Beatles",
+    "albums": [
+    {
+      "title": "Please, Please Me",
+      "year":  "1963"
+    },
+    {
+      "title": "A Hard Day's Night",
+      "year":  "1964"
+    },
+    {
+      "title": "Help!",
+      "year":  "1965"
+    }
+  ]}
+]

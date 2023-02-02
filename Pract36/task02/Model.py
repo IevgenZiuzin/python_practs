@@ -1,58 +1,45 @@
 import json
-from abc import ABC, abstractmethod
+from typing import List
 
 
-class Entity(ABC):
-    @abstractmethod
-    def add(self, value):
-        ...
-
-    @abstractmethod
-    def delete(self, value):
-        ...
-
-    @abstractmethod
-    def find(self, value):
-        ...
-
-
-class ListOfDictsEntity(list, Entity, ABC):
-    def add(self, value):
-        self.append(value)
-
-    def delete(self, value):
-        self.pop(value)
-
-    def find(self, value):
-        for i in self:
-            for k in i.keys():
-                if value == i[k]:
-                    return self.index(i)
-
-
-class DictWithListEntity(dict, Entity, ABC):
-    def add(self, value):
-        self.update(value)
-
-    def delete(self, value):
-        self.pop(value)
-
-    def find(self, value):
-        return self.get(value)
-
-
-class Group(DictWithListEntity, ABC):
-    def __init__(self, title=None):
-        super().__init__()
+class Album:
+    def __init__(self, title: str, year: str):
         self.title = title
+        self.year = year
 
 
-class Albums(ListOfDictsEntity, ABC):
+class Albums(List[Album]):
     pass
 
 
-class Album(DictWithListEntity, ABC):
-    def __init__(self, title=None, year=None):
+class Artist:
+    def __init__(self, title: str, albums: List[Album]):
+        self.title = title
+        self.albums = albums
+
+
+class Artists(List[Artist]):
+    pass
+
+
+class DB(list):
+    def __init__(self, path):
         super().__init__()
-        self.tile = title
-        self.year = year
+        self._path = path
+        self.content = self._init(self._path)
+        if self.content:
+            self.extend(self.content)
+
+    def _init(self, path):
+        try:
+            with open(path, 'r') as file:
+                return json.loads(file.read())
+        except Exception as e:
+            print('Data loading failed', e)
+
+    def update(self, body):
+        try:
+            with open(self._path, 'w') as file:
+                return json.dumps(file.write(body))
+        except Exception as e:
+            print('Data saving failed', e)

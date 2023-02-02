@@ -14,7 +14,7 @@ class Car:
 
 class Motorcycle:
     def set_rider(self, name):
-        print(f'{name.title()} is riding this bike')
+        print(f'{name._title()} is riding this bike')
 
 
 class MotorcycleAdapter:
